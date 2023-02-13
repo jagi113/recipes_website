@@ -10,24 +10,24 @@ export interface Recipe {
     updatedAt: string
 }
 
-export interface Fetch {
+export interface FetchRecipe {
     type: string;
-    payload: Recipe[]
+    payload: any
 }
 
 
-const URL = "http://192.168.101.189:2121/recipes"
+const URL = "http://192.168.101.189:2121/recipes/"
 
-export const fetchRecipes = () => {
+export const fetchRecipe = (slug:string) => {
     return async function (dispatch: any, getState: any) {
-        const response = await axios.get(URL, {
+        const response = await axios.get(URL+slug, {
             params: {
             }
         }
         );
 
         dispatch({
-            type: 'FETCH_RECIPES',
+            type: 'FETCH_RECIPE',
             payload: response.data
         });
     }
